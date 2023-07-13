@@ -1,7 +1,7 @@
 import { CorrectIcon, DeleteIcon } from "../icons"
 import { TaskListType } from "../types"
 
-const TaskList = ({ task }: TaskListType) => {
+const SingleTaskList = ({ task }: TaskListType) => {
     return (
         <div className="px-4 py-2 rounded-md bg-pale-gold flex justify-between gap-4 items-center w-full">
             <p className="text-lg font-bold text-coffee-brown">{task}</p>
@@ -17,4 +17,4 @@ const TaskList = ({ task }: TaskListType) => {
     )
 }
 
-export default TaskList
+export default SingleTaskList

@@ -1,34 +1,14 @@
-import { TaskList } from "./components/ui";
+import { AddTodo, TaskBoxList } from "./components/ui";
 
 export default function Home() {
   return (
     <main className="bg-dark-brown w-full min-h-screen p-20 flex justify-center items-center">
       <div className="">
-        <section className="text-center">
-          <h1 className="text-5xl font-mono font-normal text-pale-gold mb-5 text-center">
-            Just do it.|
-          </h1>
-          <form>
-            <label className="flex justify-center items-center">
-              <input
-                className="w-full px-2 py-2 md:px-4 md:py-3 text-lg font-semibold text-coffee-brown bg-gray-100 rounded-l-full outline-none"
-                type="text"
-                placeholder="Add your task..."
-              />
-              <button
-                type="button"
-                className="px-5 py-3 text-lg font-bold text-coffee-brown bg-pale-gold rounded-r-full outline-none"
-              >
-                Add
-              </button>
-            </label>
-          </form>
-          {/* Adding Date and time */}
-          {/* list of task */}
-        </section>
-        <section className="py-10 flex flex-col gap-2 w-[400px]">
-          <TaskList task="hjdaskljdkladklasjdksa" />
-        </section>
+        <h1 className="text-5xl font-mono font-normal text-pale-gold mb-5 text-center">
+          Just do it.|
+        </h1>
+        <AddTodo />
+        <TaskBoxList />
       </div>
     </main>
   );
