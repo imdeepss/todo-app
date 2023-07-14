@@ -1,15 +1,22 @@
 "use client";
 
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useState } from 'react';
+import { useTodos } from '@/store/todos';
 
 const AddTodo = () => {
-    const [todo, setTodo] = useState("");
+    const [task, setTask] = useState('');
 
+    const { handleAddTodo } = useTodos();
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(todo)
-    }
+        handleAddTodo(task);
+        setTask('');
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setTask(e.target.value);
+    };
 
     return (
         <section className="text-center">
@@ -19,7 +26,8 @@ const AddTodo = () => {
                         className="w-full px-2 py-2 md:px-4 md:py-3 text-lg font-semibold text-coffee-brown bg-gray-100 rounded-l-full outline-none"
                         type="text"
                         placeholder="Add your task..."
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setTodo(e.target.value) }}
+                        value={task}
+                        onChange={handleChange}
                     />
                     <button
                         type="submit"
@@ -31,7 +39,7 @@ const AddTodo = () => {
             </form>
             {/* Adding Date and time */}
         </section>
-    )
-}
+    );
+};
 
-export default AddTodo
+export default AddTodo;

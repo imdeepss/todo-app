@@ -1,9 +1,18 @@
+"use client"
+
+import { useTodos } from '@/store/todos'
 import SingleTaskList from './SingleTaskList'
 
 const TaskBoxList = () => {
+    const { todos } = useTodos()
+
     return (
         <section className="py-10 flex flex-col gap-2 w-[400px]">
-            <SingleTaskList task="hjdaskljdkladklasjdksa" />
+            {todos &&
+                todos.map((_) => {
+                    return <SingleTaskList task={_.task} key={_.id} complete={_.complete} />
+                })
+            }
         </section>
     )
 }
