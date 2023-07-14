@@ -1,15 +1,30 @@
 "use client";
 
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useState, useEffect } from 'react';
 import { useTodos } from '@/store/todos';
+import { format } from 'date-fns';
 
 const AddTodo = () => {
     const [task, setTask] = useState('');
+    const [dateTime, setDateTime] = useState(format(new Date(), 'yyyy-MM-dd HH:mm:ss'));
 
     const { handleAddTodo } = useTodos();
 
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            setDateTime(format(new Date(), 'yyyy-MM-dd HH:mm:ss'));
+        }, 1000);
+
+        return () => {
+            clearInterval(intervalId);
+        };
+    }, []);
+
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (!task) {
+            return;
+        }
         handleAddTodo(task);
         setTask('');
     };
@@ -37,7 +52,7 @@ const AddTodo = () => {
                     </button>
                 </label>
             </form>
-            {/* Adding Date and time */}
+            <p className="text-sm text-pale-gold mt-2">Date and Time: {dateTime}</p>
         </section>
     );
 };
