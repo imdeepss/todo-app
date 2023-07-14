@@ -1,10 +1,9 @@
 "use client"
 
-import { TodoContextType, TodoType } from "@/app/components/types";
 import { createContext, ReactNode, useState, useContext } from "react";
+import { TodoContextType, TodoType } from "@/app/components/types";
 
-
-export const todosContext = createContext<TodoContextType | null>(null);
+export const TodosContext = createContext<TodoContextType | undefined>(undefined);
 
 export const TodosProvider = ({ children }: { children: ReactNode }) => {
     const [todos, setTodos] = useState<TodoType[]>([]);
@@ -20,15 +19,29 @@ export const TodosProvider = ({ children }: { children: ReactNode }) => {
         setTodos((prevTodos) => [newTodo, ...prevTodos]);
     };
 
+    const completedTask = (id: string) => {
+        setTodos((prevTodos) =>
+            prevTodos.map((todo) =>
+                todo.id === id ? { ...todo, complete: !todo.complete } : todo
+            )
+        );
+    };
+
+    const deleteTask = (id: string) => {
+        setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+    };
+
     return (
-        <todosContext.Provider value={{ todos, handleAddTodo }}>
+        <TodosContext.Provider
+            value={{ todos, handleAddTodo, completedTask, deleteTask }}
+        >
             {children}
-        </todosContext.Provider>
+        </TodosContext.Provider>
     );
 };
 
 export function useTodos() {
-    const todosContextValue = useContext(todosContext);
+    const todosContextValue = useContext(TodosContext);
 
     if (!todosContextValue) {
         throw new Error("useTodos used outside of TodosProvider");

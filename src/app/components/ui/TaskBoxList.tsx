@@ -9,9 +9,8 @@ const TaskBoxList = () => {
     return (
         <section className="py-10 flex flex-col gap-2 w-[400px]">
             {todos &&
-                todos.map((_) => {
-                    return <SingleTaskList task={_.task} key={_.id} complete={_.complete} />
-                })
+                todos.map((_) => <SingleTaskList task={_.task} key={_.id} id={_.id} complete={_.complete} />
+                )
             }
         </section>
     )

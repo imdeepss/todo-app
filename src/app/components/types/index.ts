@@ -12,4 +12,6 @@ export type TodoType = {
 export type TodoContextType = {
   todos: TodoType[];
   handleAddTodo: (task: string) => void;
+  completedTask: (id: string) => void;
+  deleteTask: (id: string) => void;
 };
