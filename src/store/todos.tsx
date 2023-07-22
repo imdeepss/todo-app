@@ -7,8 +7,8 @@ import {
   useContext,
   useEffect,
 } from 'react';
-import { TodoContextType, TodoType } from '@/app/components/types';
-import useTodoCart from '@/app/components/hooks/useLocalStorage';
+import { TodoContextType, TodoType } from '@/app/common/types';
+import useTodoCart from '@/app/common/hooks/useLocalStorage';
 
 export const TodosContext = createContext<TodoContextType | undefined>(
   undefined
@@ -17,7 +17,7 @@ export const TodosContext = createContext<TodoContextType | undefined>(
 export const TodosProvider = ({ children }: { children: ReactNode }) => {
   const [todos, setTodos] = useState<TodoType[]>([]);
 
-  const { todoData, addTodoData, clearTodoData } = useTodoCart();
+  const { todoData, addTodoData, clearTodoData ,updateTodoData} = useTodoCart();
 
   useEffect(() => {
     setTodos(todoData);
@@ -36,15 +36,22 @@ export const TodosProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const completedTask = (id: string) => {
-    setTodos((prevTodos) =>
-      prevTodos.map((todo) =>
+    setTodos((prevTodos) => {
+      const newTodo = prevTodos.map((todo) =>
         todo.id === id ? { ...todo, complete: !todo.complete } : todo
       )
+      updateTodoData(newTodo)
+      return newTodo
+    }
     );
   };
 
   const deleteTask = (id: string) => {
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+    setTodos((prevTodos) => {
+      const newTodo:TodoType[] = prevTodos.filter((todo) => todo.id !== id)
+      clearTodoData(newTodo)
+      return newTodo
+    });
   };
 
   return (

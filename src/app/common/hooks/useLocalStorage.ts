@@ -5,7 +5,7 @@ import { TodoType } from '../types';
 const initialData: TodoType[] = [];
 
 const useTodoCart = () => {
-  const [todoData, setTodoData, { removeItem: clearTodoData }] =
+  const [todoData, setTodoData] =
     useLocalStorageState<TodoType[]>('taskData', {
       defaultValue: initialData,
     });
@@ -16,10 +16,19 @@ const useTodoCart = () => {
     [setTodoData]
   );
 
+  const clearTodoData = useCallback((item:TodoType[]) => {
+    setTodoData(item);
+  }, [setTodoData]);
+
+  const updateTodoData = useCallback((item:TodoType[]) => {
+    setTodoData(item);
+  }, [setTodoData]);
+
   return {
     todoData,
     addTodoData,
     clearTodoData,
+    updateTodoData
   };
 };
 
