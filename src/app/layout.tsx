@@ -2,6 +2,7 @@ import { TodosProvider } from '@/store/todos';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { CommonLayout } from './common/components';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -20,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <TodosProvider>
-          {children}
+          <CommonLayout>{children}</CommonLayout>
         </TodosProvider>
       </body>
     </html>

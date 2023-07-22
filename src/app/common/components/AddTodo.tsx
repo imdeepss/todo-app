@@ -46,13 +46,13 @@ const AddTodo = () => {
                     />
                     <button
                         type="submit"
-                        className="px-5 py-3 text-lg font-bold text-coffee-brown bg-pale-gold rounded-r-full outline-none"
+                        className="px-5 py-3 text-lg font-bold dark:text-coffee-brown text-pale-gold dark:bg-pale-gold bg-coffee-brown rounded-r-full outline-none"
                     >
                         Add
                     </button>
                 </label>
             </form>
-            <p className="text-sm text-pale-gold mt-2">Date and Time: {dateTime}</p>
+            <p className="text-sm dark:text-pale-gold text-dark-brown mt-2">Date and Time: {dateTime}</p>
         </section>
     );
 };

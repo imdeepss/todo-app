@@ -2,7 +2,6 @@
 
 import { useTodos } from '@/store/todos';
 import SingleTaskList from './SingleTaskList';
-import useTodoCart from '../hooks/useLocalStorage';
 
 const TaskBoxList = () => {
   const { todos } = useTodos();
