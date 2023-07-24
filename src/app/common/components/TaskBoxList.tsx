@@ -7,7 +7,7 @@ const TaskBoxList = () => {
   const { todos } = useTodos();
 
   return (
-    <section className="py-10 flex flex-col gap-2 w-[400px]">
+    <section className="my-10 flex flex-col gap-2 w-[400px] max-h-[500px] overflow-auto scrollBar">
       {todos &&
         todos.map((_) => (
           <SingleTaskList

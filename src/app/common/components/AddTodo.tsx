@@ -38,7 +38,7 @@ const AddTodo = () => {
             <form onSubmit={handleSubmit}>
                 <label className="flex justify-center items-center">
                     <input
-                        className="w-full px-2 py-2 md:px-4 md:py-3 text-lg font-semibold text-coffee-brown bg-gray-100 rounded-l-full outline-none"
+                        className="w-full px-4 py-3 text-lg font-semibold text-coffee-brown bg-gray-100 rounded-l-full outline-none"
                         type="text"
                         placeholder="Add your task..."
                         value={task}
